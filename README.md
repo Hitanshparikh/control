@@ -1,78 +1,177 @@
-# 3D Model Playground
+# 🎮 3D Model Control Playground
 
-Control 3D models using hand gestures and voice commands in real-time.
+> **Interactive 3D model manipulation through gesture recognition and voice commands**
 
-An interactive web app built with threejs, mediapipe computer vision, web speech API, and rosebud AI.
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/Hitanshparikh/control)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel)](https://github.com/Hitanshparikh/control)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
-- Say "drag", "rotate", "scale", or "animate" to change the interaction mode
-- Pinch fingers to control the 3D model
-- Drag/drop a new 3D model onto the page to import it (GLB/GLTF format)
+## 🌟 Overview
 
-[Video](https://youtu.be/_I1E44Fp1Es?si=lR2otqR_-ZGdIGXT) | [Live Demo](https://collidingscopes.github.io/3d-model-playground/)
+**3D Model Control** is a cutting-edge web application that brings futuristic interaction to 3D models. Using advanced computer vision and speech recognition technologies, users can intuitively control 3D objects through natural hand gestures and voice commands - no controllers required!
 
-## Requirements
+### ✨ Key Features
 
-- Modern web browser with WebGL support
-- Camera / microphone access
+- 🗣️ **Voice Control**: Say "drag", "rotate", "scale", or "animate" to switch interaction modes
+- ✋ **Hand Gesture Recognition**: Pinch and gesture to manipulate 3D models in real-time
+- 📁 **Drag & Drop Support**: Import custom 3D models (GLB/GLTF format) instantly
+- 🎨 **Real-time Rendering**: Smooth 3D graphics with WebGL acceleration
+- 📱 **Cross-platform**: Works on desktop and mobile browsers
+- 🎮 **Multiple Interaction Modes**: Seamlessly switch between different control schemes
 
-## Technologies
+## 🚀 Quick Start
 
-- **Three.js** for 3D rendering
-- **MediaPipe** for hand tracking and gesture recognition
-- **Web Speech API** for speech recognition
-- **HTML5 Canvas** for visual feedback
-- **JavaScript** for real-time interaction
+### Prerequisites
 
-## Setup for Development
+- Modern web browser with WebGL 2.0 support
+- Camera access for gesture recognition
+- Microphone access for voice commands
+- Internet connection for CDN resources
 
+### Installation & Setup
+
+#### Option 1: Direct Launch (Recommended)
 ```bash
-# Clone this repository
-git clone https://github.com/collidingScopes/3d-model-playground
+# Clone the repository
+git clone https://github.com/Hitanshparikh/control.git
+cd control
 
-# Navigate to the project directory
-cd 3d-model-playground
+# Run the application (Windows)
+.\run_3d_playground.bat
 
-# Serve with your preferred method (example using Python)
-python -m http.server
+# Or use PowerShell
+.\run_3d_playground.ps1
+
+# Or use Python launcher
+python launcher.py
 ```
 
-Then navigate to `http://localhost:8000` in your browser.
+#### Option 2: Manual Setup
+```bash
+# Clone the repository
+git clone https://github.com/Hitanshparikh/control.git
+cd control
 
-## License
+# Start a local web server
+python -m http.server 8080
+# Or use Node.js
+npx serve .
+# Or use PHP
+php -S localhost:8080
+```
 
-MIT License
+Then navigate to `http://localhost:8080` in your browser.
 
-## Credits
+## 🎯 How to Use
 
-- Three.js - https://threejs.org/
-- MediaPipe - https://mediapipe.dev/
-- Rosebud AI - https://rosebud.ai/
-- Quaternius 3D models - https://quaternius.com/
+1. **Grant Permissions**: Allow camera and microphone access when prompted
+2. **Voice Commands**: 
+   - Say **"drag"** to enter drag mode
+   - Say **"rotate"** to rotate the model
+   - Say **"scale"** to resize the model
+   - Say **"animate"** to play model animations
+3. **Hand Gestures**: Use pinch gestures to control the active interaction mode
+4. **Model Import**: Drag and drop GLB/GLTF files onto the viewport to load new models
 
-## Related Projects
+## 🛠️ Technology Stack
 
-I've released several computer vision projects (with code + tutorials) here:
-[Fun With Computer Vision](https://www.funwithcomputervision.com/)
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| **Three.js** | 3D rendering engine | Latest |
+| **MediaPipe** | Hand tracking & gesture recognition | Web |
+| **Web Speech API** | Voice command recognition | Native |
+| **WebGL** | Hardware-accelerated graphics | 2.0 |
+| **JavaScript (ES6+)** | Core application logic | Modern |
+| **HTML5 Canvas** | Visual feedback & UI elements | - |
 
-You can purchase lifetime access and receive the full project files and tutorials. I'm adding more content regularly :)
+## 📁 Project Structure
 
-You might also like some of my other open source projects:
+```
+control/
+├── 📄 index.html              # Main application entry point
+├── 🎨 styles.css              # Application styling
+├── ⚙️ main.js                 # Core application logic
+├── 🎮 game.js                 # 3D scene management
+├── 🎙️ SpeechManager.js        # Voice command processing
+├── 📞 audioManager.js         # Audio system management
+├── ⚙️ SettingsManager.js      # Application configuration
+├── 📚 ModelLibraryManager.js  # 3D model management
+├── 🚀 launcher.py             # Python web server launcher
+├── 🦇 run_3d_playground.bat   # Windows batch launcher
+├── 💻 run_3d_playground.ps1   # PowerShell launcher
+├── 📋 requirements.txt        # Python dependencies
+├── 📁 assets/                 # 3D models and media files
+│   ├── Stan.gltf              # Default 3D character model
+│   └── siteOGImage.jpg        # Social media preview image
+└── 📁 reference_project/      # Reference implementation
+```
 
-- [Particular Drift](https://collidingScopes.github.io/particular-drift) - Turn photos into flowing particle animations
-- [Liquid Logo](https://collidingScopes.github.io/liquid-logo) - Transform logos and icons into liquid metal animations
-- [Video-to-ASCII](https://collidingScopes.github.io/ascii) - Convert videos into ASCII pixel art
+## ⚡ Performance Features
 
-## Contact
+- **Optimized Rendering**: Efficient Three.js rendering pipeline
+- **Gesture Caching**: Smart hand tracking with performance optimization
+- **Memory Management**: Automatic cleanup of loaded models
+- **Responsive Design**: Adapts to different screen sizes and devices
+- **Error Recovery**: Graceful fallbacks for missing permissions or unsupported features
 
-- Instagram: [@stereo.drift](https://www.instagram.com/stereo.drift/)
-- Twitter/X: [@measure_plan](https://x.com/measure_plan)
-- Email: [stereodriftvisuals@gmail.com](mailto:stereodriftvisuals@gmail.com)
-- GitHub: [collidingScopes](https://github.com/collidingScopes)
+## 🤝 Contributing
 
-## Donations
+Contributions are welcome! Here's how you can help:
 
-If you enjoyed this, feel free to buy me a coffee.
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
 
-My name is Alan, and I enjoy building open source software for computer vision, games, and more. This would be much appreciated during late-night coding sessions!
+### Development Guidelines
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/stereoDrift)
+- Follow ES6+ JavaScript standards
+- Maintain consistent code formatting
+- Test across multiple browsers
+- Document new features thoroughly
+- Optimize for performance
+
+## 🐛 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Camera not detected | Check browser permissions and ensure camera is connected |
+| Voice commands not working | Verify microphone access and try speaking clearly |
+| Model not loading | Ensure GLB/GLTF file is valid and under 50MB |
+| Performance issues | Close other browser tabs and ensure WebGL 2.0 support |
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Credits & Acknowledgments
+
+### Core Technologies
+- [Three.js](https://threejs.org/) - 3D graphics library
+- [MediaPipe](https://mediapipe.dev/) - ML framework for hand tracking
+- [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) - Browser speech recognition
+
+### 3D Models & Assets
+- [Quaternius](https://quaternius.com/) - High-quality 3D models
+- Default character model: Stan.gltf
+
+## 👨‍💻 Author
+
+**Hitansh Parikh**
+- 🐙 GitHub: [@Hitanshparikh](https://github.com/Hitanshparikh)
+- 📧 Email: [Your Email Here]
+- 🌐 Portfolio: [Your Website Here]
+- 💼 LinkedIn: [Your LinkedIn Here]
+
+---
+
+<div align="center">
+
+### 🌟 Star this repository if you found it helpful!
+
+**Built with ❤️ by Hitansh Parikh**
+
+[⬆ Back to Top](#-3d-model-control-playground)
+
+</div>
