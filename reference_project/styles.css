@@ -1,0 +1,451 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --bg-dark: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f0f2f5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+}
+
+/* Instruction Text */
+.instruction-text {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-primary);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-size: clamp(12px, 1.5vw, 14px);
+    text-align: center;
+    z-index: 200;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+}
+
+/* Floating Buttons */
+.floating-btn {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    z-index: 300;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.floating-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.floating-btn:hover .btn-icon {
+    color: var(--primary);
+}
+
+.floating-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    line-height: 1;
+    stroke-width: 2;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.btn-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    opacity: 0;
+    color: var(--text-muted);
+}
+
+.models-btn {
+    top: 20px;
+    left: 20px;
+}
+
+.settings-btn {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* Panels */
+.panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.97);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    z-index: 400;
+    max-height: 75vh;
+    width: 90%;
+    max-width: 440px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    animation: panelIn 0.3s ease-out forwards;
+}
+
+.panel.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes panelIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-dark);
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.panel-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    opacity: 0.8;
+    stroke-width: 2;
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
+    border-radius: 6px;
+}
+
+.close-btn i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+.close-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.panel-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+.panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+.panel-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0;
+}
+
+.panel-section {
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-section:last-child {
+    border-bottom: none;
+}
+
+/* Model List */
+.model-list {
+    padding: 12px;
+}
+
+.model-item {
+    padding: 14px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.model-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary);
+    transform: translateX(2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.model-item > div:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.model-item > div:last-child {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.model-item.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Toggle Label */
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #cbd5e1;
+    border-radius: 13px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 11px;
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+input[type="checkbox"]:checked + .toggle-slider {
+    background: var(--primary);
+}
+
+input[type="checkbox"]:checked + .toggle-slider::after {
+    transform: translateX(18px);
+}
+
+.toggle-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.toggle-title {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.toggle-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Upload Section */
+.upload-section {
+    padding: 24px 28px !important;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 28px 20px;
+    background: var(--bg-secondary);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.upload-label:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary);
+}
+
+.upload-icon {
+    width: 32px;
+    height: 32px;
+    display: block;
+    opacity: 0.7;
+    stroke-width: 2;
+}
+
+.upload-text {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.upload-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .panel {
+        width: 95%;
+        max-width: 100%;
+        max-height: 80vh;
+    }
+    
+    .floating-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .btn-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .btn-label {
+        font-size: 8px;
+    }
+    
+    .models-btn {
+        top: 16px;
+        left: 16px;
+    }
+    
+    .settings-btn {
+        bottom: 16px;
+        left: 16px;
+    }
+    
+    .panel-header {
+        padding: 20px 24px;
+    }
+    
+    .panel-header h3 {
+        font-size: 16px;
+    }
+    
+    .panel-section {
+        padding: 16px 24px;
+    }
+}

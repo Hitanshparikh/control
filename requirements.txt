@@ -1,0 +1,2 @@
+# Requirements for creating executable
+pyinstaller==6.1.0
